@@ -39,10 +39,16 @@ curl -fsSL https://raw.githubusercontent.com/Bigsmoke002/gemini-rules/main/setup
 ---
 
 ### Windows (PowerShell)
-Erstelle das Konfigurationsverzeichnis und kopiere die `GEMINI.md`:
+
+#### Option A: Klonen via SSH & Setup ausführen
 ```powershell
-New-Item -ItemType Directory -Force -Path "$HOME\.gemini\config"
-# GEMINI.md in $HOME\.gemini\config\GEMINI.md ablegen
+git clone git@github.com:Bigsmoke002/gemini-rules.git "$HOME\.gemini-rules"
+& "$HOME\.gemini-rules\setup.ps1"
+```
+
+#### Option B: Manueller PowerShell-Einzeiler (ohne Klonen)
+```powershell
+New-Item -ItemType Directory -Force -Path "$HOME\.gemini\config"; Copy-Item ".\GEMINI.md" "$HOME\.gemini\config\GEMINI.md" -Force; Copy-Item "$HOME\.gemini\config\GEMINI.md" "$HOME\.gemini\GEMINI.md" -Force
 ```
 
 ---
@@ -54,5 +60,6 @@ New-Item -ItemType Directory -Force -Path "$HOME\.gemini\config"
 ├── GEMINI.md     # Die vollständigen globalen Agenten-Regeln
 ├── AGENTS.md     # Symlink auf GEMINI.md für universelle Tool-Kompatibilität
 ├── setup.sh      # Automatisches Setup-Skript für Linux/macOS
+├── setup.ps1     # Automatisches Setup-Skript für Windows (PowerShell)
 └── README.md     # Diese Dokumentation
 ```
